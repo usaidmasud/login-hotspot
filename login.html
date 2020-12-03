@@ -1,0 +1,194 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<title>Login | Usaid Hotspot</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+	<link rel="icon" href="assets/img/wifi.ico" type="image/ico" sizes="16x16">
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="text-gray-50 bg-cover md:bg-auto bg-gradient-to-tr from-gray-600 to-gray-900">
+	$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+
+	<script type="text/javascript" src="assets/md5.js"></script>
+	<script type="text/javascript">
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+	</script>
+	$(endif)
+
+	<div class="min-h-screen flex flex-col justify-center items-center px-4">
+		<!-- box  -->
+		<div class="max-w-sm md:max-w-md overflow-hidden rounded-lg bg-gray-700 shadow-md w-full">
+			<!-- header  -->
+			<div class="px-4 py-2 bg-gray-600 flex justify-center items-center">
+				<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+						d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0">
+					</path>
+				</svg>
+				<h5 class="text-xl text-gray-200 font-bold tracking-wider text-center shadow-sm">Login Hotspot
+				</h5>
+			</div>
+			<!-- body  -->
+			<div class="px-4 py-2 mt-4">
+				<form id="form-login" name="form-login" action="$(link-login-only)" method="post" $(if chap-id)
+					onSubmit="return doLogin()" $(endif)>
+					<input type="hidden" name="dst" value="$(link-orig)" />
+					<input type="hidden" name="popup" value="true" />
+					<div class="flex items-center border-b border-green-200 py-1">
+						<svg class="w-6 h-6 mr-2 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+								d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+						</svg>
+						<input type="text" name="username" id="vusername" value="$(username)"
+							class="w-full bg-gray-700 focus:outline-none text-base text-gray-50 tracking-wider placeholder-gray-400"
+							placeholder="Masukkan Kode Voucher" />
+					</div>
+					<input type="hidden" name="password" id="vpassword" />
+					<div class="mt-2">
+						<button type="submit"
+							class="w-full block rounded-lg tracking-wider py-1 px-4 bg-gradient-to-tr from-green-600 to-green-500 text-gray-100 font-semibold focus:outline-none overflow-hidden">LOGIN</button>
+					</div>
+				</form>
+				$(if trial == 'yes')
+				<div class="mt-4 text-right flex justify-end items-center">
+					<span class="text-sm text-gray-400">| atau |&nbsp;</span><a
+						href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"
+						class="rounded py-1 px-2 bg-gradient-to-tr from-yellow-600 to-yellow-500 text-gray-200 text-sm">Coba
+						Gratis</a>
+				</div>
+				$(endif)
+				$(if error)
+				<div class="mt-4 border border-red-300 rounded">
+					<p class="text-sm text-red-400 font-semibold text-center tracking-wider">$(error)</p>
+				</div>
+				$(endif)
+			</div>
+			<!-- body  -->
+
+			<!-- footer  -->
+			<div class="bg-gray-600 px-4 py-2 text-center">
+				<p class="text-base text-gray-50 ">Internet Sehat dan Aman <strong>(INSAN)</strong> </p>
+				<div class="mt-4">
+					<a href="https://wa.me/628175769795?text=Assalamu'alaikum%20" class="flex justify-end items-center text-sm">
+						<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+							</path>
+						</svg>
+						<span class="">+6281 7576 9795</span>
+					</a>
+				</div>
+			</div>
+			<!-- ./footer  -->
+		</div>
+		<div class="mt-4 max-w-sm md:max-w-md overflow-hidden rounded-lg w-full border border-gray-500">
+			<div class="bg-gray-500">
+				<h5 class="p-2 font-semibold text-base text-center text-gray-50">Daftar Harga</h5>
+			</div>
+			<div class="">
+				<div class="flex flex-nowrap gap-2 overflow-x-auto scrolling-touch text-center p-2">
+					<div class="w-full rounded-t-lg border border-green-600 overflow-hidden">
+						<div class="bg-green-600 p-1">
+							<h5 class="text-base font-semibold tracking-wider"><span class="text-sm font-normal">Rp</span> 2.000</h5>
+						</div>
+						<div class="p-2">
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+								</svg>
+								<p class="text-sm">12 Jam</p>
+							</div>
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01">
+									</path>
+								</svg>
+								<p class="text-sm">3 Gbps</p>
+							</div>
+						</div>
+					</div>
+					<div class="w-full rounded-t-lg border border-green-600 overflow-hidden">
+						<div class="bg-green-600 p-1">
+							<h5 class="text-base font-semibold tracking-wider"><span class="text-sm font-normal">Rp</span> 2.000</h5>
+						</div>
+						<div class="p-2">
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+								</svg>
+								<p class="text-sm">1 Hari</p>
+							</div>
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01">
+									</path>
+								</svg>
+								<p class="text-sm">3 Gbps</p>
+							</div>
+						</div>
+					</div>
+					<div class="w-full rounded-t-lg border border-green-600 overflow-hidden">
+						<div class="bg-green-600 p-1">
+							<h5 class="text-base font-semibold tracking-wider"><span class="text-sm font-normal">Rp</span> 2.000</h5>
+						</div>
+						<div class="p-2">
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+								</svg>
+								<p class="text-sm">2 Hari</p>
+							</div>
+							<div class="flex justify-between items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01">
+									</path>
+								</svg>
+								<p class="text-sm">5 Gbps</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			document.login.username.focus();
+		</script>
+		<script src="assets/jquery/jquery.js"></script>
+		<script src="assets/custome.js"></script>
+</body>
+
+</html>
